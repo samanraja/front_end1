@@ -14,7 +14,7 @@
 
 <body>
   <!-- START HERE -->
-
+<body id="home" data-spy="scroll" data-target="#main-nav">
   <nav class="navbar navbar-expand-md navbar-light fixed-top py-4" id="main-nav">
       <div class="container">
         <a href="#home" class="navbar-brand">
@@ -411,6 +411,25 @@
   <script>
     // Get the current year for the copyright
     $('#year').text(new Date().getFullYear());
+
+    // Init Scrollspy
+    $('body').scrollspy({ target: '#main-nav' });
+
+    // Smooth Scrolling
+    $("#main-nav a").on('click', function (event) {
+      if (this.hash !== "") {
+        event.preventDefault();
+
+        const hash = this.hash;
+
+        $('html, body').animate({
+          scrollTop: $(hash).offset().top
+        }, 800, function () {
+
+          window.location.hash = hash;
+        });
+      }
+    });
   </script>
 </body>
 
